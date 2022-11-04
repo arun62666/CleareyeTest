@@ -1,0 +1,135 @@
+<div class="container">
+  <legend>Employee Form</legend>
+  <form [formGroup]="EmployeeForm">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+      <span
+        *ngIf="
+          EmployeeForm.controls['name'].touched &&
+          EmployeeForm.controls['name'].errors
+        "
+        class="text-danger"
+        >Please Enter Name</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address </label>
+      <textarea
+        class="form-control"
+        id="address"
+        rows="3"
+        formControlName="address"
+      ></textarea>
+      <span
+        *ngIf="
+          EmployeeForm.controls['address'].touched &&
+          EmployeeForm.controls['address'].errors
+        "
+        class="text-danger"
+        >Please Enter Address
+      </span>
+    </div>
+    <div class="mb-3">
+      <label for="datepicker" class="form-label">Date of Birth</label>
+      <div class="input-group date" id="datepicker">
+        <input
+          type="date"
+          class="form-control"
+          id="birthday"
+          name="birthday"
+          formControlName="dob"
+        />
+        <span
+          *ngIf="
+            EmployeeForm.controls['dob'].touched &&
+            EmployeeForm.controls['dob'].errors
+          "
+          class="text-danger"
+          >Please Select Date of Birth</span
+        >
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Role </label>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        formControlName="role"
+      >
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="HR">HR</option>
+        <option value="Developer">Developer</option>
+      </select>
+      <span
+        *ngIf="
+          EmployeeForm.controls['role'].touched &&
+          EmployeeForm.controls['role'].errors
+        "
+        class="text-danger"
+        >Please Select role</span
+      >
+    </div>
+    <div class="mb-3">
+      <label for="phoneNo" class="form-label">Phone Number</label>
+      <ng-container formArrayName="phoneNo">
+        <div *ngFor="let contact of phoneNo.controls; let i = index">
+          <input
+            type="number"
+            class="form-control col-sm-10"
+            id="phoneNo"
+            [formControlName]="i"
+          />
+
+          <button class="btn btn-primary" (click)="addPhoneNo()">
+            Alt No.
+          </button>
+          <button
+            class="btn btn-danger"
+            *ngIf="i > 0"
+            (click)="deletePhoneNo(i)"
+          >
+            Delete
+          </button>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="mb-3">
+      <label for="" class="form-label">Gender</label>
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          value="Male"
+          formControlName="gender"
+        />Male
+      </div>
+      <div class="form-check">
+        <input
+          type="radio"
+          class="form-check-input"
+          value="Female"
+          formControlName="gender"
+        />Female
+      </div>
+      <span
+        *ngIf="
+          EmployeeForm.controls['gender'].touched &&
+          EmployeeForm.controls['gender'].errors
+        "
+        class="text-danger"
+        >Please Select gender</span
+      >
+    </div>
+    <button type="submit" (click)="submit()" class="btn btn-primary">
+      Submit
+    </button>
+  </form>
+</div>

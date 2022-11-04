@@ -1,0 +1,25 @@
+<div class="">
+  <button class="btn btn-primary" [routerLink]="''">Add Employee</button>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">DOB</th>
+      <th scope="col">Role</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of EmployeeLists">
+      <td>{{ emp.name }}</td>
+      <td>{{ emp.address }}</td>
+      <td>{{ emp.dob }}</td>
+      <td>{{ emp.role }}</td>
+      <td>{{ emp.phoneNo }}</td>
+      <td>{{ emp.gender }}</td>
+    </tr>
+  </tbody>
+</table>
